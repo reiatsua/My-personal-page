@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Моя школа</h1>
+
+{% if school %}
+    <p>{{ school.description }}</p>
+    <img src="{{ school.photos.url }}" class="img-fluid rounded mt-3">
+{% else %}
+    <div class="alert alert-warning">
+        Информация о школе ещё не добавлена
+    </div>
+{% endif %}
+
+{% endblock %}

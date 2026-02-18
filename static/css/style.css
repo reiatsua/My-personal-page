@@ -1,0 +1,35 @@
+/* Главный контейнер карусели — «как в инстаграме» */
+.achievement-carousel-wrapper {
+    width: 100%;
+    max-width: 600px;         /* Ширина как на твоих скринах */
+    aspect-ratio: 1 / 1;      /* Инстаграм любит квадрат, но можешь поставить 4 / 5 */
+    margin: 0 auto;
+    background-color: #1a1a1a; /* Темный фон, чтобы фото не «висело» в пустоте */
+    overflow: hidden;
+    border-radius: 4px;       /* Легкое скругление */
+    position: relative;
+    display: flex;
+    align-items: center;      /* Центрируем фото по вертикали */
+}
+
+/* Сама карусель и её части должны занимать 100% высоты ВСЕГДА */
+.achievement-carousel-wrapper .carousel,
+.achievement-carousel-wrapper .carousel-inner,
+.achievement-carousel-wrapper .carousel-item {
+    height: 100% !important;
+}
+
+/* Настройка изображения */
+.achievement-detail-img {
+    width: 100%;
+    height: 100%;
+    /* contain — фото вписывается ЦЕЛИКОМ без обрезки. 
+       Благодаря фону контейнера это выглядит аккуратно */
+    object-fit: contain; 
+    display: block;
+}
+
+/* Фикс для плавности: убираем любые прыжки при смене кадров */
+.carousel-item {
+    transition: transform .6s ease-in-out, opacity .6s ease-out;
+}

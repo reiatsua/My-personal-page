@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Мои достижения</h1>
+
+<div class="row mt-4">
+{% for a in achievements %}
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <img src="{{ a.cover.url }}" class="card-img-top achievement-card-img">
+
+            <div class="card-body">
+                <h5 class="card-title">{{ a.title }}</h5>
+                <a href="/achievements/{{ a.id }}/" class="btn btn-primary">
+                    Подробнее
+                </a>
+            </div>
+        </div>
+    </div>
+{% empty %}
+    <p>Достижений пока нет</p>
+{% endfor %}
+</div>
+
+{% endblock %}
