@@ -13,7 +13,7 @@
                     🌐 Веб-сайт школы
                 </a>
                 
-                <!-- Carousel for multiple photos -->
+                <!-- карусель -->
                 {% if school.photo_gallery.all %}
                 <div class="d-flex justify-content-center mt-4">
                     <div class="achievement-carousel-wrapper">
@@ -56,7 +56,6 @@
                     </div>
                 </div>
                 {% elif school.photos %}
-                <!-- Fallback to old single photo if no carousel photos -->
                 <img src="{{ school.photos.url }}" class="img-fluid rounded mt-3">
                 {% endif %}
             </div>
