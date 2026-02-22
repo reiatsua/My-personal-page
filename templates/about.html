@@ -1,31 +1,162 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
 
 {% block content %}
-<h1>Обо мне</h1>
+<div class="about-container">
+    <h1 class="mb-4">Обо мне</h1>
 
-{% if about %}
-    <div class="row mt-4">
-        <div class="col-md-4">
-            <img src="{{ about.photo.url }}" class="img-fluid rounded">
+    {% if about %}
+        <!-- Main Profile Section -->
+        <div class="card mb-5 shadow">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-md-4 text-center mb-4 mb-md-0">
+                        <img src="{{ about.photo.url }}" class="profile-photo rounded shadow-sm">
+                    </div>
+                    <div class="col-md-8">
+                        <h2 class="section-title">👋 Кто я</h2>
+                        {{ about.bio|to_ordered_list|safe }}
+                        
+                        <h2 class="section-title mt-4">🏫 Школа</h2>
+                        <p class="fs-5 lh-lg">{{ about.school }}</p>
+                        
+                        <h2 class="section-title mt-4">💻 Мой GitHub</h2>
+                        <a href="{{ about.github }}" target="_blank" class="btn btn-dark btn-lg">
+                            <i class="bi bi-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-8">
-            <p>{{ about.bio }}</p>
 
-            <p>
-                <strong>Школа:</strong> {{ about.school }}
-            </p>
+        <!-- Additional Info Grid -->
+        <div class="row g-4">
+            <!-- Hobbies -->
+            <div class="col-md-6">
+                <div class="card h-100 shadow hover-card">
+                    <div class="card-body">
+                        <h2 class="section-title">🎨 Мои увлечения</h2>
+                        <p class="fs-5 lh-lg">{{ about.hobbies }}</p>
+                    </div>
+                </div>
+            </div>
 
-            <p>
-                <a href="{{ about.github }}" target="_blank" class="btn btn-dark">
-                    GitHub
-                </a>
-            </p>
+            <!-- Relatives -->
+            <div class="col-md-6">
+                <div class="card h-100 shadow hover-card">
+                    <div class="card-body">
+                        <h2 class="section-title">👨‍👩‍👧‍👦 Мои родные</h2>
+                        {{ about.relatives|to_unordered_list|safe }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zodiac -->
+            <div class="col-md-6">
+                <div class="card h-100 shadow hover-card">
+                    <div class="card-body">
+                        <h2 class="section-title">♈ Мой гороскоп</h2>
+                        <p class="fs-5 lh-lg">{{ about.zodiak }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wishes -->
+            <div class="col-md-6">
+                <div class="card h-100 shadow hover-card">
+                    <div class="card-body">
+                        <h2 class="section-title">✨ Мои пожелания</h2>
+                        <p class="fs-5 lh-lg">{{ about.wishes|colorize_words|safe }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-{% else %}
-    <div class="alert alert-warning">
-        Информация «Обо мне» ещё не заполнена
-    </div>
-{% endif %}
+
+        <!-- Friends Section -->
+        <div class="card mt-5 shadow">
+            <div class="card-body">
+                <h2 class="section-title mb-4">👥 Мои друзья и класс</h2>
+                <p class="fs-5 lh-lg mb-4">{{ about.friends }}</p>
+                <div class="text-center">
+                    <img src="{{ about.photo_friends.url }}" class="friends-photo rounded shadow-sm" alt="Friends">
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-warning">
+            Информация «Обо мне» ещё не заполнена
+        </div>
+    {% endif %}
+</div>
+
+<style>
+    .about-container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .profile-photo {
+        max-width: 100%;
+        height: auto;
+        width: 250px;
+        border: 3px solid #f0f0f0;
+    }
+
+    .friends-photo {
+        max-width: 100%;
+        height: auto;
+        max-height: 400px;
+    }
+
+    .section-title {
+        color: #2c3e50;
+        font-weight: 600;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 8px;
+        display: inline-block;
+        margin-bottom: 16px;
+    }
+
+    .card {
+        border: none;
+        border-radius: 8px !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    h1 {
+        color: #2c3e50;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .btn-dark {
+        background-color: #2c3e50;
+        border-color: #2c3e50;
+    }
+
+    .btn-dark:hover {
+        background-color: #007bff;
+        border-color: #007bff;
+        transform: scale(1.05);
+        transition: all 0.3s ease;
+    }
+
+    ol, ul {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+    }
+
+    ol li, ul li {
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+</style>
 
 {% endblock %}

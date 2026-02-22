@@ -1,15 +1,102 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Моя школа</h1>
+<div class="school-container">
+    <h1>Моя школа</h1>
 
-{% if school %}
-    <p>{{ school.description }}</p>
-    <img src="{{ school.photos.url }}" class="img-fluid rounded mt-3">
-{% else %}
-    <div class="alert alert-warning">
-        Информация о школе ещё не добавлена
-    </div>
-{% endif %}
+    {% if school %}
+        <div class="card mt-4 shadow">
+            <div class="card-body">
+                <p class="fs-5 lh-lg">{{ school.description|linebreaks }}</p>
+                
+                <a href="http://flyceum.ru/" target="_blank" class="btn btn-primary btn-lg mt-3">
+                    🌐 Веб-сайт школы
+                </a>
+                
+                <!-- Carousel for multiple photos -->
+                {% if school.photo_gallery.all %}
+                <div class="d-flex justify-content-center mt-4">
+                    <div class="achievement-carousel-wrapper">
+                        <div id="schoolCarousel"
+                             class="carousel slide"
+                             data-bs-ride="carousel">
+
+                            <div class="carousel-inner">
+                                {% for item in school.photo_gallery.all %}
+                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                    {% if item.photo %}
+                                    <img src="{{ item.photo.url }}" class="achievement-detail-img">
+                                    {% elif item.video %}
+                                    <video class="achievement-detail-img" controls>
+                                        <source src="{{ item.video.url }}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                            {% if school.photo_gallery.count > 1 %}
+                            <button class="carousel-control-prev"
+                                    type="button"
+                                    data-bs-target="#schoolCarousel"
+                                    data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon"></span>
+                            </button>
+
+                            <button class="carousel-control-next"
+                                    type="button"
+                                    data-bs-target="#schoolCarousel"
+                                    data-bs-slide="next">
+                                <span class="carousel-control-next-icon"></span>
+                            </button>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+                {% elif school.photos %}
+                <!-- Fallback to old single photo if no carousel photos -->
+                <img src="{{ school.photos.url }}" class="img-fluid rounded mt-3">
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-warning">
+            Информация о школе ещё не добавлена
+        </div>
+    {% endif %}
+</div>
+
+<style>
+    .school-container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        color: #2c3e50;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .card {
+        border: none;
+        border-radius: 8px !important;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+        transform: scale(1.05);
+    }
+</style>
 
 {% endblock %}

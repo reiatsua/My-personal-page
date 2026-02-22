@@ -1,7 +1,7 @@
 /* Главный контейнер карусели — «как в инстаграме» */
 .achievement-carousel-wrapper {
     width: 100%;
-    max-width: 600px;         /* Ширина как на твоих скринах */
+    max-width: 300px;         /* Ширина как на твоих скринах */
     aspect-ratio: 1 / 1;      /* Инстаграм любит квадрат, но можешь поставить 4 / 5 */
     margin: 0 auto;
     background-color: #1a1a1a; /* Темный фон, чтобы фото не «висело» в пустоте */
@@ -12,11 +12,22 @@
     align-items: center;      /* Центрируем фото по вертикали */
 }
 
-/* Сама карусель и её части должны занимать 100% высоты ВСЕГДА */
-.achievement-carousel-wrapper .carousel,
-.achievement-carousel-wrapper .carousel-inner,
-.achievement-carousel-wrapper .carousel-item {
+/* Сама карусель и её части должны занимать 100% высоты и ширины ВСЕГДА */
+.achievement-carousel-wrapper .carousel {
+    width: 100% !important;
     height: 100% !important;
+}
+
+.achievement-carousel-wrapper .carousel-inner {
+    width: 100% !important;
+    height: 100% !important;
+    overflow: visible !important;
+}
+
+.achievement-carousel-wrapper .carousel-item {
+    width: 100% !important;
+    height: 100% !important;
+    overflow: visible !important;
 }
 
 /* Настройка изображения */
@@ -27,6 +38,14 @@
        Благодаря фону контейнера это выглядит аккуратно */
     object-fit: contain; 
     display: block;
+}
+
+/* Видео должно принимать тот же размер и стиль */
+.carousel-item video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
 }
 
 /* Фикс для плавности: убираем любые прыжки при смене кадров */
