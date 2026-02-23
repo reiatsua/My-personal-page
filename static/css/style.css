@@ -1,24 +1,19 @@
-/* ==========================================
-   Адаптивная карусель достижений
-   ========================================== */
-
-/* Основной контейнер-обертка */
 .achievement-carousel-wrapper {
     width: 100%;
-    /* На десктопе ограничиваем ширину, чтобы контент не растягивался слишком сильно */
+    /* ширина на десктопе */
     max-width: 500px; 
     aspect-ratio: 1 / 1;
     margin: 20px auto;
     background-color: #1a1a1a;
     overflow: hidden;
-    border-radius: 8px; /* Чуть мягче углы */
+    border-radius: 8px; /* круглые углы */
     position: relative;
     display: flex;
     align-items: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Добавим немного глубины */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* тени */
 }
 
-/* Стили для вложенных элементов Bootstrap карусели */
+/* карусель элементы да */
 .achievement-carousel-wrapper .carousel,
 .achievement-carousel-wrapper .carousel-inner,
 .achievement-carousel-wrapper .carousel-item {
@@ -27,43 +22,37 @@
     overflow: visible !important;
 }
 
-/* Изображения и Видео */
+/* изображения и видео */
 .achievement-detail-img,
 .carousel-item video {
     width: 100% !important;
     height: 100% !important;
-    /* contain: показывает всё изображение с полями (если оно не квадратное) */
-    /* cover: растягивает изображение на весь квадрат (может обрезать края) */
     object-fit: contain; 
     display: block;
 }
 
-/* Плавность перехода между слайдами */
+/* плавные переходы */
 .carousel-item {
     transition: transform .6s ease-in-out, opacity .6s ease-out;
 }
 
-/* Настройка кнопок управления (стрелочек) для мобилок */
+/* кнопки на мобилках */
 .carousel-control-prev,
 .carousel-control-next {
-    width: 10%; /* Уменьшаем область клика, чтобы не мешать просмотру */
+    width: 10%; /* область прока клика */
 }
 
-/* ==========================================
-   Адаптация под мобильные устройства
-   ========================================== */
 
-/* Для смартфонов (ширина экрана до 768px) */
 @media (max-width: 768px) {
     .achievement-carousel-wrapper {
-        /* Занимаем почти всю ширину экрана */
+        /* занимаем почти всю ширину экрана */
         max-width: 95%; 
         margin: 10px auto;
-        border-radius: 4px; /* На маленьких экранах углы лучше делать острее */
+        border-radius: 4px;
     }
 
-    /* Скрываем стрелочки на мобилках, если есть поддержка Swipe (свайпа) */
-    /* Или просто делаем их менее заметными */
+    /* если свай есть то убираем стрелки */
+    /* или просто делаем их менее заметными */
     .carousel-control-prev-icon,
     .carousel-control-next-icon {
         width: 1.5rem;
@@ -71,7 +60,7 @@
     }
 }
 
-/* Для очень маленьких экранов (до 320px) */
+/* для очень маленьких экранов (до 320px) */
 @media (max-width: 320px) {
     .achievement-carousel-wrapper {
         max-width: 100%;
