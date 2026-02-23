@@ -1,49 +1,80 @@
-/* карусель */
+/* ==========================================
+   Адаптивная карусель достижений
+   ========================================== */
+
+/* Основной контейнер-обертка */
 .achievement-carousel-wrapper {
     width: 100%;
-    max-width: 300px;
+    /* На десктопе ограничиваем ширину, чтобы контент не растягивался слишком сильно */
+    max-width: 500px; 
     aspect-ratio: 1 / 1;
-    margin: 0 auto;
+    margin: 20px auto;
     background-color: #1a1a1a;
     overflow: hidden;
-    border-radius: 4px;
+    border-radius: 8px; /* Чуть мягче углы */
     position: relative;
     display: flex;
     align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Добавим немного глубины */
 }
 
-.achievement-carousel-wrapper .carousel {
-    width: 100% !important;
-    height: 100% !important;
-}
-
-.achievement-carousel-wrapper .carousel-inner {
-    width: 100% !important;
-    height: 100% !important;
-    overflow: visible !important;
-}
-
+/* Стили для вложенных элементов Bootstrap карусели */
+.achievement-carousel-wrapper .carousel,
+.achievement-carousel-wrapper .carousel-inner,
 .achievement-carousel-wrapper .carousel-item {
     width: 100% !important;
     height: 100% !important;
     overflow: visible !important;
 }
 
-.achievement-detail-img {
-    width: 100%;
-    height: 100%;
-
+/* Изображения и Видео */
+.achievement-detail-img,
+.carousel-item video {
+    width: 100% !important;
+    height: 100% !important;
+    /* contain: показывает всё изображение с полями (если оно не квадратное) */
+    /* cover: растягивает изображение на весь квадрат (может обрезать края) */
     object-fit: contain; 
     display: block;
 }
 
-.carousel-item video {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain !important;
-    display: block !important;
-}
-
+/* Плавность перехода между слайдами */
 .carousel-item {
     transition: transform .6s ease-in-out, opacity .6s ease-out;
+}
+
+/* Настройка кнопок управления (стрелочек) для мобилок */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 10%; /* Уменьшаем область клика, чтобы не мешать просмотру */
+}
+
+/* ==========================================
+   Адаптация под мобильные устройства
+   ========================================== */
+
+/* Для смартфонов (ширина экрана до 768px) */
+@media (max-width: 768px) {
+    .achievement-carousel-wrapper {
+        /* Занимаем почти всю ширину экрана */
+        max-width: 95%; 
+        margin: 10px auto;
+        border-radius: 4px; /* На маленьких экранах углы лучше делать острее */
+    }
+
+    /* Скрываем стрелочки на мобилках, если есть поддержка Swipe (свайпа) */
+    /* Или просто делаем их менее заметными */
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+
+/* Для очень маленьких экранов (до 320px) */
+@media (max-width: 320px) {
+    .achievement-carousel-wrapper {
+        max-width: 100%;
+        border-radius: 0;
+    }
 }
