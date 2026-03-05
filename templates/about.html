@@ -10,7 +10,7 @@
             <div class="card-body">
                 <div class="row align-items-center">
                     <div class="col-md-4 text-center mb-4 mb-md-0">
-                        <img src="{{ about.photo.url }}" class="profile-photo rounded shadow-sm">
+                        <img src="{{ about.photo.url }}" class="profile-photo rounded-circle">
                     </div>
                     <div class="col-md-8">
                         <h2 class="section-title">👋 Кто я</h2>
@@ -20,7 +20,7 @@
                         <p class="fs-5 lh-lg">{{ about.school }}</p>
                         
                         <h2 class="section-title mt-4">💻 Мой GitHub</h2>
-                        <a href="{{ about.github }}" target="_blank" class="btn btn-dark btn-lg">
+                        <a href="{{ about.github }}" target="_blank" class="btn btn-dark btn-lg ms-3">
                             <i class="bi bi-github"></i> GitHub
                         </a>
                     </div>
@@ -97,11 +97,21 @@
         margin: 0 auto;
     }
 
+    @keyframes bounceIn {
+        0% { opacity: 0; transform: scale(.3); }
+        50% { opacity: 1; transform: scale(1.05); }
+        70% { transform: scale(.9); }
+        100% { transform: scale(1); }
+    }
+
     .profile-photo {
         max-width: 100%;
-        height: auto;
+        height: 250px;
         width: 250px;
-        border: 3px solid #f0f0f0;
+        object-fit: cover;
+        object-position: top;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        animation: bounceIn 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000);
     }
 
     .friends-photo {

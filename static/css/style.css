@@ -42,6 +42,21 @@
     width: 10%; /* область прока клика */
 }
 
+/*карточки*/
+.card-img-top{
+    height: 300px;
+    object-fit: cover;
+    object-position: top;
+}
+.card-title-two-row-min{
+    min-height: 48px!important;
+}
+.achievement-carousel-wrapper-img-detail{
+    max-width: 100%!important;
+    background-color: #fff!important;
+    padding: 10px 0!important;
+}
+
 
 @media (max-width: 768px) {
     .achievement-carousel-wrapper {
