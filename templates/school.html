@@ -9,10 +9,20 @@
             <div class="card-body">
                 <p class="fs-5 lh-lg">{{ school.description|linebreaks }}</p>
                 
-                <a href="http://flyceum.ru/" target="_blank" class="btn btn-primary btn-lg mt-3">
-                    🌐 Веб-сайт школы
-                </a>
-                
+                <div class="d-flex flex-wrap gap-3 align-items-center">
+                    <a href="http://flyceum.ru/" target="_blank" class="btn btn-primary btn-lg">
+                        🌐 Веб-сайт школы
+                    </a>
+
+                    {% if school.anthem %}
+                    <div class="flex-grow-1 p-2 border rounded bg-light" style="min-width: 280px;">
+                        <div class="small fw-bold mb-1">Гимн Лицея</div>
+                        <audio controls class="w-100" style="height: 35px;">
+                            <source src="{{ school.anthem.url }}" type="audio/mpeg">
+                        </audio>
+                    </div>
+                    {% endif %}
+                </div>
                 <!-- карусель -->
                 {% if school.photo_gallery.all %}
                 <div class="d-flex justify-content-center mt-4">

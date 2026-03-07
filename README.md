@@ -1,3 +1,5 @@
+![Python](https://img.shields.io/badge/python-3.14+-blue.svg) ![Django](https://img.shields.io/badge/django-6.0.2-green.svg)
+
 # Моя Личная Страница
 
 Личный веб-сайт с информацией о себе, достижениях и школе.
@@ -50,6 +52,9 @@ pip install -r requirements.txt
 ```bash
 pip install Django==6.0.2
 pip install Pillow
+pip install whitenoise==6.12.0
+pip install gunicorn
+pip install requests>=2.32.0
 ```
 
 ## Запуск проекта
@@ -85,6 +90,7 @@ python manage.py runserver
 - http://127.0.0.1:8000/ - Страница "Обо мне"
 - http://127.0.0.1:8000/achievements/ - Мои достижения
 - http://127.0.0.1:8000/school/ - Моя школа
+- http://127.0.0.1:8000/weather/ - Погода в Петропавловске
 
 ### Администраторская панель
 - http://127.0.0.1:8000/admin/ - Вход в админ-панель
@@ -116,6 +122,8 @@ my_page/
 ├── media/                  # Загруженные медиафайлы (фото, видео)
 ├── db.sqlite3              # База данных SQLite
 ├── manage.py               # Команды управления Django
+├── requirements.txt        # Список зависимостей для установки
+├── Procfile                # Файл для деплоя
 └── README.md               # Этот файл
 ```
 
@@ -141,6 +149,12 @@ my_page/
 - Описание школы
 - Кнопка для перехода на сайт школы
 - Карусель фотографий и видео школы
+
+🌤️ **Страница "Погода":**
+- Дата
+- Состояние
+- Температура (в градусах Цельсия)
+- Скорость ветра (в метрах в секунду)
 
 ## Решение проблем
 

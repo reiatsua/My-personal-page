@@ -24,6 +24,7 @@ class AchievementImage(models.Model):
 class School(models.Model):
     description = models.TextField()
     photos = models.ImageField(upload_to='school/', null=True, blank=True)
+    anthem = models.FileField(upload_to='audio/', verbose_name="Гимн школы", blank=True, null=True)
 
 class SchoolPhoto(models.Model):
     school = models.ForeignKey(School, on_delete=models.CASCADE, related_name='photo_gallery')
