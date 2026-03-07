@@ -38,10 +38,11 @@
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand ms-3" href="/">Моя страница</a>
   <div class="navbar-nav flex-row">
-    <a class="nav-link px-3" href="/">Обо мне</a>
-    <a class="nav-link px-3" href="/achievements/">Мои достижения</a>
-    <a class="nav-link px-3" href="/school/">Моя школа</a>
-  </div>
+    <a class="nav-link px-3" href="{% url 'about' %}">Обо мне</a>
+    <a class="nav-link px-3" href="{% url 'achievements' %}">Мои достижения</a>
+    <a class="nav-link px-3" href="{% url 'school' %}">Моя школа</a>
+    <a class="nav-link px-3" href="{% url 'weather' %}">Погода</a>
+</div>
 </nav>
 
 <!-- контейнер на main для flex -->
