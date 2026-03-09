@@ -51,9 +51,21 @@
 </main>
 
 <footer class="bg-dark text-white text-center p-3 mt-auto">
-  Моя личная страница 2026 год
+    Моя личная страница 2026 <span id="easter-egg-trigger" style="cursor: default;">год</span>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Находим наше секретное слово
+    const trigger = document.getElementById('easter-egg-trigger');
+
+    trigger.addEventListener('click', function (event) {
+        // event.detail возвращает количество кликов, сделанных за короткий промежуток времени
+        if (event.detail === 3) {
+            // Если кликнули 3 раза — перенаправляем на секретную страницу
+            window.location.href = "{% url 'umbrella_egg' %}";
+        }
+    });
+</script>
 </body>
 </html>

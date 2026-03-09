@@ -67,3 +67,7 @@ def weather(request):
         forecast_list = []
 
     return render(request, 'weather.html', {'forecast': forecast_list})
+
+
+def hive_access_granted(request):
+    return render(request, 'hive.html')
